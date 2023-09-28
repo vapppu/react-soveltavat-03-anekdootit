@@ -2,27 +2,28 @@ import { useState } from "react";
 
 const Anecdote = ({ text, votes }) => {
   return (
-  <p>
+    <p>
       {text} <br />
       Has {votes} votes.
-  </p>)
-
+    </p>
+  );
 };
 
-const Button = ({ handleClick, text}) => {
+const Button = ({ handleClick, text }) => {
   return (
-    <button onClick={handleClick} style={{ display: "block" }}>{text}</button>
-  )
-}
+    <button onClick={handleClick} style={{ display: "block" }}>
+      {text}
+    </button>
+  );
+};
 
 const MostPopularAnecdote = ({ anecdotes, votes }) => {
-
   const mostVotes = Math.max(...votes);
 
   if (mostVotes != 0) {
     return (
       <>
-        <p>{(anecdotes[votes.indexOf(mostVotes)])}</p>
+        <p>{anecdotes[votes.indexOf(mostVotes)]}</p>
       </>
     );
   }
@@ -57,16 +58,14 @@ const App = () => {
     setVotes(newVotes);
   };
 
-  
-
   return (
     <div>
       <h1>Anecdote of the day</h1>
-      <Anecdote text = {anecdotes[selected]} votes = {votes[selected]} />
-      <Button handleClick={newAnecdote} text="Next anecdote"/>
-      <Button handleClick={increaseVotes} text="Vote"/>
+      <Anecdote text={anecdotes[selected]} votes={votes[selected]} />
+      <Button handleClick={newAnecdote} text="Next anecdote" />
+      <Button handleClick={increaseVotes} text="Vote" />
       <h2>Anecdote with most votes</h2>
-      <MostPopularAnecdote anecdotes={anecdotes} votes={votes}/>
+      <MostPopularAnecdote anecdotes={anecdotes} votes={votes} />
     </div>
   );
 };
