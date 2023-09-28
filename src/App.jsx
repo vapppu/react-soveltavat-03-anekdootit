@@ -13,20 +13,17 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
 
   const newAnecdote = () => {
 
     const indices = anecdotes.map((anecdote) => anecdotes.indexOf(anecdote))
     const otherAnecdotes = indices.filter((index) => (index != selected))
-
-    console.log(otherAnecdotes)
     const newAnecdote = otherAnecdotes[Math.floor(Math.random() * otherAnecdotes.length)]
-    console.log(newAnecdote)
     setSelected(newAnecdote)
 
     
   };
-
 
   return (
     <div>
@@ -34,6 +31,7 @@ const App = () => {
       <button onClick={newAnecdote} style={{ display: "block" }}>
         Next anecdote
       </button>
+      <button>Vote</button>
     </div>
   );
 };
